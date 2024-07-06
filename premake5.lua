@@ -1,8 +1,7 @@
 project "ImGui"
 	kind "StaticLib"
 	language "C"
-	staticruntime "off"
-	warnings "off"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -22,14 +21,8 @@ project "ImGui"
 		"imgui_tables.cpp"
 	}
 
-
 	filter "system:windows"
 		systemversion "latest"
-
-		defines 
-		{ 
-			"_CRT_SECURE_NO_WARNINGS"
-		}
 
 	filter "configurations:Debug"
 		runtime "Debug"
@@ -37,9 +30,4 @@ project "ImGui"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "speed"
-
-    filter "configurations:Distribution"
-		runtime "Release"
-		optimize "speed"
-        symbols "off"
+		optimize "on"
